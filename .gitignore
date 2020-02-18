@@ -111,3 +111,4 @@ venv.bak/
 *.fdb_latexmk
 *.fls
 *.syntex.gz
+*.out
