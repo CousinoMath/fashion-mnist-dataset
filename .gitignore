@@ -110,5 +110,6 @@ venv.bak/
 *.pdf
 *.fdb_latexmk
 *.fls
-*.syntex.gz
+*.synctex.gz
 *.out
+*.log
