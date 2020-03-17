@@ -309,7 +309,16 @@ sparse categorical cross-entropy as a loss function.
 
 When looking a the loss functions---figures \ref{fig:simple_loss},
 \ref{fig:thin_loss}, and \ref{fig:wide_loss}, we see evidence of eventually
-overfitting in all the models. 
+overfitting in all the models. The simple and wide model start to overfit almost
+immediately, whereas the thin model starts to overfit between epochs 20--60.
+With that said, the percent validation accuracy, figure \ref{fig:valid_acc}, for
+the simple model hovers around 88\%, for the thin model hovers around 93\%, and
+for the wide model hovers around 91\%. Surprisingly, the simple model has just
+over 101 thousand trainable parameters, the thin model has over 596 thousand
+trainable parameters, and the wide model has over \(1.944\) \emph{million}
+trainable parameters. This bears witness to the idea that building good
+artifical neural networks is a skill, rather than just throwing the maximum
+number of parameters at the problem.
 
 \begin{figure}
     \centering
@@ -343,14 +352,30 @@ overfitting in all the models.
     \centering
     \begin{tikzpicture}
         \begin{axis}[xlabel={Epochs}, ymin=0, ymax=1]
-            % \addplot table[x=Step,y=Value,col sep=comma]{wide_train_loss.txt};
-            % \addlegendentry{Training Loss};
-            % \addplot table[x=Step,y=Value,col sep=comma]{wide_valid_loss.txt};
-            % \addlegendentry{Testing Loss};
+            \addplot table[x=Step,y=Value,col sep=comma]{wide_train_loss.txt};
+            \addlegendentry{Training Loss};
+            \addplot table[x=Step,y=Value,col sep=comma]{wide_valid_loss.txt};
+            \addlegendentry{Testing Loss};
         \end{axis}
     \end{tikzpicture}
     \caption{Short, Wide CNN Loss}
     \label{fig:wide_loss}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[xlabel={Epochs}, ylabel={\% valid. acc.}]
+            \addplot table[x=Step,y=Value,col sep=comma]{simple_valid_acc.txt};
+            \addlegendentry{Simple};
+            \addplot table[x=Step,y=Value,col sep=comma]{thin_valid_acc.txt};
+            \addlegendentry{Thin};
+            \addplot table[x=Step,y=Value,col sep=comma]{wide_valid_acc.txt};
+            \addlegendentry{Wide};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{\% Validation Accuracy}
+    \label{fig:valid_acc}
 \end{figure}
 
 \section{Related Work}
