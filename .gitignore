@@ -113,3 +113,6 @@ venv.bak/
 *.synctex.gz
 *.out
 *.log
+
+# TensorBoard log files
+fitlog/
